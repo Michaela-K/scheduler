@@ -5,32 +5,33 @@ import { render, cleanup, fireEvent } from "@testing-library/react";
 import Button from "components/Button";
 
 afterEach(cleanup);
-
+//A button can render
 it("renders without crashing", () => {
   render(<Button />);
 });
 
-it.skip("renders its `children` prop as text", () => {
+it("renders its `children` prop as text", () => {
   const { getByText } = render(<Button>Default</Button>);
   expect(getByText("Default")).toBeInTheDocument();
 });
-
-it.skip("renders a default button style", () => {
+//A button renders with the default style
+it("renders a default button style", () => {
   const { getByText } = render(<Button>Default</Button>);
   expect(getByText("Default")).toHaveClass("button");
 });
-
-it.skip("renders a confirm button", () => {
+//A button renders with the confirm style when the confirm prop is true
+it("renders a confirm button", () => {
   const { getByText } = render(<Button confirm>Confirm</Button>);
   expect(getByText("Confirm")).toHaveClass("button--confirm");
 });
-
-it.skip("renders a danger button", () => {
+//A button renders with the danger style when the danger prop is true
+it("renders a danger button", () => {
   const { getByText } = render(<Button danger>Danger</Button>);
   expect(getByText("Danger")).toHaveClass("button--danger");
 });
-
-it.skip("renders a clickable button", () => {
+//A button can trigger an onClick prop with the button event handler
+//A button does not trigger onClick prop when the disabled prop is true
+it("renders a clickable button", () => {
   const handleClick = jest.fn();
   const { getByText } = render(
     <Button onClick={handleClick}>Clickable</Button>
@@ -43,7 +44,7 @@ it.skip("renders a clickable button", () => {
   expect(handleClick).toHaveBeenCalledTimes(1);
 });
 
-it.skip("renders a disabled button", () => {
+it("renders a disabled button", () => {
   const handleClick = jest.fn();
   const { getByText } = render(
     <Button disabled onClick={handleClick}>
