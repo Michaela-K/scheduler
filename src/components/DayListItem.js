@@ -3,6 +3,7 @@ import React from "react";
 import 'components/DayListItem.scss';
 import classNames from "classnames";
 
+//responsible for displaying the name and remaining spots for a single day
 export default function DayListItem(props) {
   const dayClass = classNames("day-list__item", {
     "day-list__item--selected": props.selected,
