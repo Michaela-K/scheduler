@@ -5,9 +5,10 @@ import 'components/InterviewerList.scss';
 export default function InterviewerList(props) {
 
   const interviewers = props.interviewers;
-
+  // console.log(interviewers)
+  
   const listOfNames = interviewers.map((person) =>   //To fix "selected"
-    <InterviewerListItem key={person.id} name={person.name} avatar={person.avatar} selected={person.name === props.name} setInterviewer={props.setInterviewer}/>
+    <InterviewerListItem key={person.id} name={person.name} avatar={person.avatar} selected={person.id === props.interviewer} setInterviewer={()=>props.setInterviewer(person.id)}/>
   )
  return (
   <>

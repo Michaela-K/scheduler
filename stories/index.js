@@ -104,7 +104,8 @@ storiesOf("Button", module)
           id={interviewer.id}
           name={interviewer.name}
           avatar={interviewer.avatar}
-          setInterviewer={action("setInterviewer")}
+          setInterviewer={() => action("setInterviewer")(interviewer.id)}  //Now it expects a function with no parameters since the id is already included.
+          //An argument can be passed to a function in Storybook by wrapping it in () after the name of the action, as seen in the code above.
         />
       ));
 
