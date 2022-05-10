@@ -20,6 +20,11 @@ body {
   min-height: 100vh;
 }
 
+.appointment:last-of-type .appointment__add {
+  display: none;
+}
+
+
 @media only screen and (max-width: 960px) {
   html {
     font-size: 12px;
