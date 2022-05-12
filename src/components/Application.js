@@ -1,26 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 // import React from 'react';
 import 'components/Application.scss';
 import Appointment from 'components/Appointment';
 import DayList from 'components/DayList';
+import axios from 'axios';
 
-const days = [
- {
-  id: 1,
-  name: 'Monday',
-  spots: 2,
- },
- {
-  id: 2,
-  name: 'Tuesday',
-  spots: 5,
- },
- {
-  id: 3,
-  name: 'Wednesday',
-  spots: 0,
- },
-];
+// const days = [
+//  {
+//   id: 1,
+//   name: 'Monday',
+//   spots: 2,
+//  },
+//  {
+//   id: 2,
+//   name: 'Tuesday',
+//   spots: 5,
+//  },
+//  {
+//   id: 3,
+//   name: 'Wednesday',
+//   spots: 0,
+//  },
+// ];
 
 const appointments = {
   "1": {
@@ -63,8 +64,20 @@ const appointments = {
 
 export default function Application(props) {
  const [dayList, setDayList] = useState('Monday');
+ const [days, setDays] = useState([]);
 
- console.log(dayList);
+ useEffect(() => {
+  const url = `http://localhost:8001/api/days`;
+  axios  //Axios creates the response based on the data returned by the server.
+  .get(url)
+  .then(response => {
+    console.log("++++++++Response+++++",response.data)
+    setDays(response.data);
+  })
+  .catch(err => console.log(err.message))
+  }, []);
+
+//  console.log(dayList);
  return (
   <>
    <main className="layout">
