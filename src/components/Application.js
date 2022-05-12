@@ -66,13 +66,15 @@ export default function Application(props) {
 //  const [dayList, setDayList] = useState('Monday');
 //  const [days, setDays] = useState([]);
 const [state, setState] = useState({
-  dayList: "Monday",
+  day: "Monday",
   days: [],
   // you may put the line below, but will have to remove/comment hardcoded appointments variable
   appointments: {}
 });
-const setDayList = day => setState({ ...state, day });
-const setDays = (days) => setState(prev => ({ ...prev, days }));
+//prev is holding the current state valueof the application
+//...prev makes a copy and uses day to set
+const setDay = day => setState(prev => ({ ...prev, day }));
+// const setDays = (days) => setState(prev => ({ ...prev, days }));
 
  useEffect(() => {
   const url = `http://localhost:8001/api/days`;
@@ -80,7 +82,11 @@ const setDays = (days) => setState(prev => ({ ...prev, days }));
   .get(url)
   .then(response => {
     console.log("++++++++Response+++++",response.data)
-    setDays(response.data);
+    // setDays(response.data);
+    setState(prev => ({
+      ...prev,
+      days: response.data
+    }))
   })
   .catch(err => console.log(err.message))
   }, []);
@@ -98,7 +104,7 @@ const setDays = (days) => setState(prev => ({ ...prev, days }));
      />
      <hr className="sidebar__separator sidebar--centered" />
      <nav className="sidebar__menu">
-      <DayList days={state.days} value={state.dayList} onChange={setDayList} />
+      <DayList days={state.days} value={state.day} onChange={setDay} />
      </nav>
      <img
       className="sidebar__lhl sidebar--centered"
