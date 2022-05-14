@@ -4,13 +4,13 @@ import 'components/Application.scss';
 import Appointment from 'components/Appointment';
 import DayList from 'components/DayList';
 import axios from 'axios';
-import { getAppointmentsForDay, getInterview } from 'helpers/selectors';
+import { getAppointmentsForDay, getInterview, getInterviewersForDay } from 'helpers/selectors';
 
 // const days = [
 //  {
 //   id: 1,
 //   name: 'Monday',
-//   spots: 2,
+//   spots: 2,  
 //  },
 //  {
 //   id: 2,
@@ -79,6 +79,7 @@ const setDay = day => setState(prev => ({ ...prev, day }));
 
 // const dailyAppointments = [];
 const dailyAppointments = getAppointmentsForDay(state, state.day)
+const interviewersArr = getInterviewersForDay(state, state.day)
 
  useEffect(() => {
 //   const url = `http://localhost:8001/api/days`;
@@ -132,6 +133,7 @@ const dailyAppointments = getAppointmentsForDay(state, state.day)
       id={appointment.id}
       time={appointment.time}
       interview={interview}
+      interviewers={interviewersArr}
       // {...appointment} 
      />
      })}

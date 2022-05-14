@@ -42,7 +42,7 @@ export default function Appointment(props) {
       interviewer={props.interview.interviewer}
      />
     )}
-    {mode === CREATE && <Form interviewers={[]} onSave={props.onSave} onCancel={back}/>}
+    {mode === CREATE && <Form interviewers={props.interviewers} onSave={props.onSave} onCancel={back}/>}
    </article>
   </Fragment>
  );
