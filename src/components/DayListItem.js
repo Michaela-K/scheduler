@@ -5,7 +5,7 @@ import classNames from "classnames";
 
 //responsible for displaying the name and remaining spots for a single day
 export default function DayListItem(props) {
-  console.log(props.name);
+  // console.log(props.name);
   const dayClass = classNames("day-list__item", {
     "day-list__item--selected": props.selected,
     "day-list__item--full": props.spots === 0

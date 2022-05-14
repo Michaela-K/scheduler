@@ -1,4 +1,4 @@
-export function getAppointmentsForDay(state, day) {
+function getAppointmentsForDay(state, day) {
  let selectedDay;
  let appointments = [];
  // console.log(state)
@@ -22,3 +22,17 @@ export function getAppointmentsForDay(state, day) {
  }
  return appointments;
 }
+
+function getInterview(state, interview) {
+  if (!interview) {
+    return null;
+  }
+  const interviewer = state.appointments[`${interview.interviewer}`]
+  const interviewObj ={
+    "student": interview.student,
+    "interviewer": interviewer
+  }
+  return interviewObj;
+}
+
+export {getAppointmentsForDay, getInterview};
