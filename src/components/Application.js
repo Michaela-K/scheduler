@@ -81,6 +81,11 @@ const setDay = day => setState(prev => ({ ...prev, day }));
 const dailyAppointments = getAppointmentsForDay(state, state.day)
 const interviewersArr = getInterviewersForDay(state, state.day)
 
+function bookInterview(id, interview) {
+  console.log("appointment-Id: ", id)
+  console.log("Interview Object: ", interview)
+}
+
  useEffect(() => {
 //   const url = `http://localhost:8001/api/days`;
 //   axios  //Axios creates the response based on the data returned by the server.
@@ -134,6 +139,7 @@ const interviewersArr = getInterviewersForDay(state, state.day)
       time={appointment.time}
       interview={interview}
       interviewers={interviewersArr}
+      bookInterview={bookInterview}
       // {...appointment} 
      />
      })}

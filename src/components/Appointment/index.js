@@ -27,6 +27,16 @@ export default function Appointment(props) {
   return result;
  };
 
+ function save(student, interviewer) {
+  const interview = {
+    student: student,
+    interviewer: interviewer
+  };
+  // console.log("student",student)
+  // console.log("interviewer", interviewer)
+  props.bookInterview(props.id, interview)
+}
+
  return (
   <Fragment>
    <article className="appointment">
@@ -42,7 +52,7 @@ export default function Appointment(props) {
       interviewer={props.interview.interviewer}
      />
     )}
-    {mode === CREATE && <Form interviewers={props.interviewers} onSave={props.onSave} onCancel={back}/>}
+    {mode === CREATE && <Form interviewers={props.interviewers} onSave={save} onCancel={back}/>}
    </article>
   </Fragment>
  );

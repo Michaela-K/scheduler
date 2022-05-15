@@ -5,7 +5,7 @@ import InterviewerList from 'components/InterviewerList';
 export default function Form(props) {
  const [student, setStudent] = useState(props.student || '');
  const [interviewer, setInterviewer] = useState(props.interviewer || null);
- const [interviewerId, setInterviewerId] = useState();
+//  const [interviewerId, setInterviewerId] = useState();
 
  const reset = () => {
   setStudent('');
@@ -16,9 +16,9 @@ export default function Form(props) {
   props.onCancel();
  };
 
- const onChange = (id) => {
-  console.log(id);
-  setInterviewerId(id);
+ const onChange = (interviewer) => {
+  // console.log(id);
+  setInterviewer(interviewer);
  };
 
  return (
@@ -39,7 +39,7 @@ export default function Form(props) {
      interviewer={interviewer}
      //  setInterviewer={setInterviewer}
      onChange={onChange}
-     value={interviewerId}
+     value={interviewer && interviewer.id} //evaluates to last truthy thing found
     />
    </section>
    <section className="appointment__card-right">
@@ -47,7 +47,7 @@ export default function Form(props) {
      <Button danger onClick={cancel}>
       Cancel
      </Button>
-     <Button confirm onClick={props.onSave}>
+     <Button confirm onClick={() => props.onSave(student, interviewer)}>
       Save
      </Button>
     </section>
