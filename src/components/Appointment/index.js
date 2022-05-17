@@ -35,6 +35,11 @@ export default function Appointment(props) {
   // console.log("student",student)
   // console.log("interviewer", interviewer)
   props.bookInterview(props.id, interview)
+  .then(() => {
+    console.log("abc")
+    transition(SHOW); 
+  }) 
+  .catch((err) => console.log("error", err)); 
 }
 
  return (

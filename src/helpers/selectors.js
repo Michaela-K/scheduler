@@ -27,7 +27,7 @@ function getInterview(state, interview) {
   if (!interview) {
     return null;
   }
-  const interviewer = state.appointments[`${interview.interviewer}`]
+  const interviewer = state.interviewers[`${interview.interviewer}`]
   const interviewObj ={
     "student": interview.student,
     "interviewer": interviewer
