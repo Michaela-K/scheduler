@@ -12,6 +12,7 @@ const EMPTY = 'EMPTY';
 const SHOW = 'SHOW';
 const CREATE = 'CREATE';
 const SAVING = 'SAVING';
+const DELETE = 'DELETE'
 
 export default function Appointment(props) {
  const { mode, transition, back } = useVisualMode(
@@ -39,11 +40,25 @@ export default function Appointment(props) {
   transition(SAVING)
   props.bookInterview(props.id, interview)
   .then(() => {
-    console.log("abc")
+    // console.log("abc")
     transition(SHOW); 
   }) 
   .catch((err) => console.log("error", err)); 
-}
+ }
+
+ function deleteApp(id, interview){
+  // const interview = {
+  //   student: null,
+  //   interviewer: null
+  // };
+  transition(DELETE)
+  props.cancelInterview(props.id, props.interview)
+  .then(() => {
+    console.log("123")
+    transition(EMPTY)
+  }) 
+  console.log("INDEX.JS INTERVIEW ",props.interview)
+ }
 
  return (
   <Fragment>
@@ -55,13 +70,15 @@ export default function Appointment(props) {
           /> : <Empty/>} */}
     {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
     {mode === SHOW && (
-     <Show
-      student={props.interview.student}
-      interviewer={props.interview.interviewer}
+     <Show 
+      student={props.interview && props.interview.student}
+      interviewer={props.interview && props.interview.interviewer}
+      onDelete={()=> deleteApp()}
      />
     )}
     {mode === CREATE && <Form interviewers={props.interviewers} onSave={save} onCancel={back}/>}
-    {mode=== SAVING && <Status message = "Saving"/>}
+    {mode === SAVING && <Status message = "Saving"/>}
+    {mode === DELETE && <Status message = 'Deleting'/>}
    </article>
   </Fragment>
  );

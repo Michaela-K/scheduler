@@ -87,7 +87,7 @@ export default function Application(props) {
 
  function bookInterview(id, interview) {
   // console.log("appointment-Id: ", id)
-  console.log("Interview Object: ", interview)
+  // console.log('Interview Object: ', interview);
 
   const appointment = {
    ...state.appointments[id], //create a new appointment object starting with the values copied from the existing appointment
@@ -101,7 +101,27 @@ export default function Application(props) {
    .put(`http://localhost:8001/api/appointments/${id}`, { interview })
    .then(() => {
     setState({ ...state, appointments });
-    console.log(state);
+    // console.log(state);
+   });
+ }
+
+ function cancelInterview(id, interview) {
+  const appointment = {
+   ...state.appointments[id],
+   interview: null,
+  };
+  console.log("appointment - Del ", appointment)  //this show interview is null
+  const appointments = {
+   ...state.appointments,
+   [id]: appointment,
+  };
+  console.log("AppointmentS - Del ", appointments) //also null in appointments
+  return axios
+   .delete(`http://localhost:8001/api/appointments/${id}`, { interview })
+   .then(() => {
+    console.log("axios test")
+    setState({ ...state, appointments });
+    console.log("Axios cancelInterview", state.appointments[`${id}`]);
    });
  }
 
@@ -163,6 +183,7 @@ export default function Application(props) {
         interview={interview}
         interviewers={interviewersArr}
         bookInterview={bookInterview}
+        cancelInterview={cancelInterview}
         // {...appointment}
        />
       );
