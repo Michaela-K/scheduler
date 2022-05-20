@@ -32,30 +32,29 @@ function useApplicationData() {
 
 
   const updateSpots = (state, appointments, id) => {
-    console.log("UAD state", state)
-    console.log("UAD Appointments", appointments)
-    console.log("UAD Id", id)
+    // console.log("UAD state", state)
+    // console.log("UAD Appointments", appointments)
+    // console.log("UAD Id", id)
     let spots = 0;
-    //get day
+    //FIND day object within state.days that match the day we are booking
     const dayObj = state.days.find(d => d.name === state.day);
-    console.log("UAD dayObj", dayObj)
-    //get id/index
-    console.log("UAD dayObj.appointments", dayObj.appointments)
+    // console.log("UAD dayObj", dayObj)
+    // console.log("UAD dayObj.appointments", dayObj.appointments)
+    //Loop through the object's appointments 
     for (const item of dayObj.appointments) {
-      console.log("UAD All Appointments", appointments)//all the appointments
+      // console.log("UAD All Appointments", appointments)//all the appointments
+      //use the item as an index to loop through each appointments for the day eg.Monday
       const appointment = appointments[item] // specific appointment using item as index/id
-      console.log("appointments[item]", appointment) //each appointment object
+      // console.log("appointments[item]", appointment) //each appointment object
+      // console.log("spotsBefore", spots)
+      //if no interview for that day then increase spots
       if (!appointment.interview) {
         spots++;
       }
+      // console.log(dayObj.spots) //this wont change till its updated, when is it updated?
+      // console.log("spotsAfter", spots)
     }
-    const newDay = { ...dayObj, spots } //creating a new obj - with dayObj created, and spots
-    console.log("newDay", newDay)
-    console.log("spots", spots)
-    const newDays = state.days.map(d => d.name === state.day ? newDay : d)
-    //if they both equal to Monday then newDays = newDay Object created
-    console.log("newDays", newDays)
-    return newDays;
+    return spots;
   };
 
  const setDay = (day) => setState((prev) => ({ ...prev, day }));

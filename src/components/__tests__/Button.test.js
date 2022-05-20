@@ -6,6 +6,7 @@ import Button from "components/Button";
 
 afterEach(cleanup);
 //A button can render
+//This test verifies that we can render the component to the DOM without throwing an error.
 it("renders without crashing", () => {
   render(<Button />);
 });

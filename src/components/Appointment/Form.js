@@ -113,7 +113,7 @@ const Form = props => {
           <section className="appointment_validation">{error}</section>
         </form>
         <InterviewerList
-          interviewers={props.interviewers}
+          interviewers={props.interviewers.toString()}
           value={interviewer}
           onChange={setInterviewer}
         />
