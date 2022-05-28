@@ -16,14 +16,14 @@ describe("Form", () => {
   ];
 
   //two ways to access the student name input element - getByPlaceholderText("Enter Student Name") or getByTestId("student-name-input")
-  xit("renders without student name if not provided", () => {
+  it("renders without student name if not provided", () => {
     const { getByPlaceholderText } = render(
       <Form interviewers={interviewers} />
     );
     expect(getByPlaceholderText("Enter Student Name")).toHaveValue("");
   });
 
-  xit("renders with initial student name", () => {
+  it("renders with initial student name", () => {
     const { getByTestId } = render(
       <Form interviewers={interviewers} student="Lydia Miller-Jones" />
     );
@@ -59,7 +59,7 @@ describe("Form", () => {
   });
   // We always want to design integration tests based on how we use the software
   // When we wrote this test, we wanted to confirm that the event handler triggers the onSave function when the input is not an empty string.
-  it("calls onSave function when the student name and interviewer is defined", () => {
+  xit("calls onSave function when the student name and interviewer is defined", () => {
     /* 1. Create the mock onSave function */
     const onSave = jest.fn();
     /* 2. Render the Form with interviewers, name and the onSave mock function passed as an onSave prop */
