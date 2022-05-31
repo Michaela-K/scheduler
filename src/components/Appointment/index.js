@@ -37,33 +37,27 @@ export default function Appointment(props) {
  };
 
  function save(student, interviewer) {
-   console.log("save called")
   const interview = {
     student: student,
     interviewer: interviewer
   };
-  // console.log("student",student)
-  // console.log("interviewer", interviewer)
+  
   transition(SAVING)
   props.bookInterview(props.id, interview)
   .then(() => {
-    // console.log("abc")
     transition(SHOW); 
   }) 
-  // .catch((err) => console.log("error", err)); 
   .catch(() => transition(ERROR_SAVE, true)) //When we transition from SAVING to ERROR_SAVE we replace the mode in the history rather than pushing it on to the end.
  }
- //We are creating functions for SAVING and ERROR_SAVE in the same scope. When we do this, they use the same transition function with the same history value.
 
+ //We are creating functions for SAVING and ERROR_SAVE in the same scope. When we do this, they use the same transition function with the same history value.
  function deleteApp(id, interview){
   // transition(CONFIRM)
   transition(DELETE);
   props.cancelInterview(props.id, props.interview)
   .then(() => {
-    console.log("123")
     transition(EMPTY)
   })
-  // console.log("INDEX.JS INTERVIEW ",props.interview)
   .catch(() => transition(ERROR_DELETE, true)) 
  }
 

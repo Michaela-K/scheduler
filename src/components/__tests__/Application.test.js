@@ -10,9 +10,7 @@ import { fireEvent } from "@testing-library/react/dist";
 afterEach(cleanup);
 
 describe("Application", () => {
-  // xit("renders without crashing", () => {
-  //   render(<Application />);
-  // });
+  
   it("defaults to Monday and changes the schedule when a new day is selected", () => {
     const { getByText } = render(<Application />);
 
@@ -101,9 +99,6 @@ describe("Application", () => {
     );
   
     expect(getByText(day, "1 spot remaining")).toBeInTheDocument();
-
-    //debug - This way we can continue to verify that our DOM contains what we expect it to as we go through phase two of our test.
-    debug();
   });
 
   it("loads data, edits an interview and keeps the spots remaining for Monday the same", async () => {
@@ -127,16 +122,20 @@ describe("Application", () => {
   fireEvent.change(input, { target: { value: "Lydia Miller-Jones" } });
 
   // Click an Interviewer
-  fireEvent.click(queryByAltText(appointment, "Sylvia Palmer"));
-
+  fireEvent.click(queryByAltText(appointment, "Sylvia Palmer")); 
+  
   // Click the "Save" button on the confirmation.
   fireEvent.click(getByText(appointment,'Save'));
 
   // Check that the element with the text "Saving" is displayed.
   expect(getByText(appointment, "Saving")).toBeInTheDocument(); 
 
-  //**************************************************************//
+  await waitForElement(() => getByText(appointment, "Lydia Miller-Jones"));
   // Ensure no spots change for "Monday"
+  const day = getAllByTestId(container, "day").find(day =>
+    queryByText(day, "Monday")
+  );
+  expect(getByText(day, "1 spot remaining"))
 
 
   debug();
@@ -172,7 +171,6 @@ describe("Application", () => {
       );
 
     expect(getByText(day, "1 spot remaining")).toBeInTheDocument();
-  debug();
   });
 
   it("shows the delete error when failing to delete an existing appointment", async() => {
@@ -199,8 +197,6 @@ describe("Application", () => {
     );
   
     expect(getByText(day, "1 spot remaining")).toBeInTheDocument();
-
-    debug();
   });
 
 });

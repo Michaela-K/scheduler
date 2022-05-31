@@ -8,12 +8,10 @@ function useVisualMode(initial) {  // take an initial argument to set the mode s
     setMode(newMode)
     setHistory([...history, newMode])
     if (replace) {
-      console.log("history", history)
       //remove last one from history array(SECOND)
       const newArray = history.slice(0, -1)
       //add newMode to history(THIRD)
       newArray.push(newMode)
-      console.log("newArray", newArray)
       //set history to replace the current mode
       setHistory(newArray)
     }
