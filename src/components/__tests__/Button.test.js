@@ -5,8 +5,7 @@ import { render, cleanup, fireEvent } from "@testing-library/react";
 import Button from "components/Button";
 
 afterEach(cleanup);
-//A button can render
-//This test verifies that we can render the component to the DOM without throwing an error.
+
 it("renders without crashing", () => {
   render(<Button />);
 });
@@ -15,17 +14,17 @@ it("renders its `children` prop as text", () => {
   const { getByText } = render(<Button>Default</Button>);
   expect(getByText("Default")).toBeInTheDocument();
 });
-//A button renders with the default style
+
 it("renders a default button style", () => {
   const { getByText } = render(<Button>Default</Button>);
   expect(getByText("Default")).toHaveClass("button");
 });
-//A button renders with the confirm style when the confirm prop is true
+
 it("renders a confirm button", () => {
   const { getByText } = render(<Button confirm>Confirm</Button>);
   expect(getByText("Confirm")).toHaveClass("button--confirm");
 });
-//A button renders with the danger style when the danger prop is true
+
 it("renders a danger button", () => {
   const { getByText } = render(<Button danger>Danger</Button>);
   expect(getByText("Danger")).toHaveClass("button--danger");
