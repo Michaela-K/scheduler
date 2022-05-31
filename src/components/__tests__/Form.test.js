@@ -1,6 +1,6 @@
 import React from "react";
 
-import { render, cleanup, fireEvent, getByText, queryByText } from "@testing-library/react";
+import { render, cleanup, fireEvent} from "@testing-library/react";
 
 import Form from "components/Appointment/Form";
 
@@ -29,7 +29,7 @@ describe("Form", () => {
     );
     expect(getByTestId("student-name-input")).toHaveValue("Lydia Miller-Jones");
   });
-  /////////////////////////////////////////////////////////////////////////
+  
   it("validates that the student name is not blank", () => {
     /* 1. Create the mock onSave function */
     const onSave = jest.fn();
@@ -44,25 +44,19 @@ describe("Form", () => {
     expect(onSave).not.toHaveBeenCalled();
   });
   
-  it("validates that the interviewer cannot be null", () => {
-    /* 1. Create the mock onSave function */
+  xit("validates that the interviewer cannot be null", () => {
     const onSave = jest.fn();
-    /* 2. Render the Form with interviewers and the onSave mock function passed as an onSave prop, the interviewer prop should be null */
     const { getByText } = render(
       <Form interviewers={interviewers} onSave={onSave} student="Lydia Miller-Jones"/>
     )
-    /* 3. Click the save button */
     fireEvent.click(getByText("Save"))
   
     expect(getByText(/please select an interviewer/i)).toBeInTheDocument();
     expect(onSave).not.toHaveBeenCalled();
   });
-  // We always want to design integration tests based on how we use the software
-  // When we wrote this test, we wanted to confirm that the event handler triggers the onSave function when the input is not an empty string.
+  
   xit("calls onSave function when the student name and interviewer is defined", () => {
-    /* 1. Create the mock onSave function */
     const onSave = jest.fn();
-    /* 2. Render the Form with interviewers, name and the onSave mock function passed as an onSave prop */
     const { getByText, queryByText } = render(
       <Form
         interviewers={interviewers}
@@ -71,7 +65,6 @@ describe("Form", () => {
         student="Lydia Miller-Jones"
       />
     );
-    /* 3. Click the save button */
     fireEvent.click(getByText("Save"));
 
     expect(queryByText(/student name cannot be blank/i)).toBeNull();
