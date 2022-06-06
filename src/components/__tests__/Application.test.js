@@ -98,7 +98,7 @@ describe("Application", () => {
       queryByText(day, "Monday")
     );
   
-    expect(getByText(day, "1 spot remaining")).toBeInTheDocument();
+    expect(getByText(day, "no spots remaining")).toBeInTheDocument();
   });
 
   it("loads data, edits an interview and keeps the spots remaining for Monday the same", async () => {
@@ -135,7 +135,7 @@ describe("Application", () => {
   const day = getAllByTestId(container, "day").find(day =>
     queryByText(day, "Monday")
   );
-  expect(getByText(day, "1 spot remaining"))
+  expect(getByText(day, "no spots remaining"))
 
 
   debug();
@@ -170,7 +170,7 @@ describe("Application", () => {
         queryByText(day, "Monday")
       );
 
-    expect(getByText(day, "1 spot remaining")).toBeInTheDocument();
+    expect(getByText(day, "no spots remaining")).toBeInTheDocument();
   });
 
   it("shows the delete error when failing to delete an existing appointment", async() => {
@@ -196,7 +196,7 @@ describe("Application", () => {
       queryByText(day, "Monday")
     );
   
-    expect(getByText(day, "1 spot remaining")).toBeInTheDocument();
+    expect(getByText(day, "no spots remaining")).toBeInTheDocument();
   });
 
 });
