@@ -1,6 +1,6 @@
 # Interview Scheduler
 
-## Setup
+## Setup 
 
 Install dependencies with `npm install`.
 
@@ -26,7 +26,7 @@ npm run storybook
 ```sh
 npm run cypress
 ```
-## Reset the Database
+## Reset the  Database
 http://localhost:8001/api/debug/reset
 
 ## Screenshots
