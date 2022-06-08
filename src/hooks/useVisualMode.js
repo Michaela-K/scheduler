@@ -31,7 +31,7 @@ function useVisualMode(initial) {  // take an initial argument to set the mode s
       // console.log(`setting new mode with: `, newArray[newArray.length - 1])
       setMode(newArray[newArray.length - 1])
       setHistory(newArray)
-      console.log("history", history)
+      // console.log("history", history)
     }
   }
   //history is an array of past modes

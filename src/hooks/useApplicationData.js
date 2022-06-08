@@ -68,7 +68,7 @@ function useApplicationData() {
       ...state.appointments,
       [id]: appointment,
     };
-    console.log("appointments", appointments)
+    // console.log("appointments", appointments)
     // console.log("state.appointments[id]", state.appointments[id]);
     // console.log('state.days[id].spots', state.days[id].spots);
 
@@ -88,13 +88,13 @@ function useApplicationData() {
       });
 
       state.days.splice(realIndex,1,day);
-      console.log(realIndex);
+      // console.log(realIndex);
         const days = [
         ...state.days,
       ];
     
-        console.log('day', day)
-        console.log('days', days)
+        // console.log('day', day)
+        // console.log('days', days)
       return days;
     }
     let days = getDay();
@@ -137,13 +137,13 @@ function useApplicationData() {
       });
 
       state.days.splice(realIndex,1,day);
-      console.log(realIndex);
+      // console.log(realIndex);
         const days = [
         ...state.days,
       ];
     
-        console.log('day', day)
-        console.log('days', days)
+        // console.log('day', day)
+        // console.log('days', days)
       return days;
     }
     let days = getDay();
