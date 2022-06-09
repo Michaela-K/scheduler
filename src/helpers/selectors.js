@@ -67,4 +67,30 @@ function getInterviewersForDay(state, day) {
   return interviewers;
  }
 
-export {getAppointmentsForDay, getInterview, getInterviewersForDay};
+ function getDay(state, appointments, id, updateSpots){
+  let day;
+  let realIndex;
+    state.days.forEach(d => {
+      // let days;
+      if(d.name === state.day){
+      realIndex = state.days.indexOf(d);
+      // console.log("DDDDDDDD", d)
+      day = {
+        ...d,
+        spots: updateSpots(state, appointments,id),
+      }
+    }
+  });
+
+  state.days.splice(realIndex,1,day);
+  // console.log(realIndex);
+    const days = [
+    ...state.days,
+  ];
+
+    // console.log('day', day)
+    // console.log('days', days)
+  return days;
+}
+
+export {getAppointmentsForDay, getInterview, getInterviewersForDay, getDay};

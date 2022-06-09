@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import {getDay} from 'helpers/selectors'
 
 //separating the rendering concern from the state management concern in our application.
 
@@ -72,33 +73,7 @@ function useApplicationData() {
     // console.log("state.appointments[id]", state.appointments[id]);
     // console.log('state.days[id].spots', state.days[id].spots);
 
-    function getDay(){
-      let day;
-      let realIndex;
-        state.days.forEach(d => {
-          // let days;
-          if(d.name === state.day){
-          realIndex = state.days.indexOf(d);
-          // console.log("DDDDDDDD", d)
-          day = {
-            ...d,
-            spots: updateSpots(state, appointments,id),
-          }
-        }
-      });
-
-      state.days.splice(realIndex,1,day);
-      // console.log(realIndex);
-        const days = [
-        ...state.days,
-      ];
-    
-        // console.log('day', day)
-        // console.log('days', days)
-      return days;
-    }
-    let days = getDay();
-
+    let days = getDay(state, appointments, id, updateSpots);
     return axios
      .put(`http://localhost:8001/api/appointments/${id}`, { interview })
      .then(() => {
@@ -121,33 +96,7 @@ function useApplicationData() {
     };
     // console.log("AppointmentS - Del ", appointments) //also null in appointments
 
-    function getDay(){
-      let day;
-      let realIndex;
-        state.days.forEach(d => {
-          // let days;
-          if(d.name === state.day){
-          realIndex = state.days.indexOf(d);
-          // console.log("DDDDDDDD", d)
-          day = {
-            ...d,
-            spots: updateSpots(state, appointments,id),
-          }
-        }
-      });
-
-      state.days.splice(realIndex,1,day);
-      // console.log(realIndex);
-        const days = [
-        ...state.days,
-      ];
-    
-        // console.log('day', day)
-        // console.log('days', days)
-      return days;
-    }
-    let days = getDay();
-
+    let days = getDay(state, appointments, id, updateSpots);
     return axios
      .delete(`http://localhost:8001/api/appointments/${id}`, { interview })
      .then(() => {
