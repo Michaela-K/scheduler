@@ -38,15 +38,15 @@ storiesOf("Button", module)
   ));
 
 //DayListItem
-  storiesOf("DayListItem", module) //Initiates Storybook and registers our DayListItem component
+  storiesOf("DayListItem", module)
   .addParameters({
     backgrounds: [{ name: "dark", value: "#222f3e", default: true }]
-  }) // Provides the default background color for our component
-  .add("Unselected", () => <DayListItem name="Monday" spots={5} />)// To define our stories, we call add() once for each of our test states to generate a story
+  }) 
+  .add("Unselected", () => <DayListItem name="Monday" spots={5} />)
   .add("Selected", () => <DayListItem name="Monday" spots={5} selected />) 
   .add("Full", () => <DayListItem name="Monday" spots={0} />)
   .add("Clickable", () => (
-    <DayListItem name="Tuesday" setDay={action("setDay")} spots={5} />// action() allows us to create a callback that appears in the actions panel when clicked
+    <DayListItem name="Tuesday" setDay={action("setDay")} spots={5} />
   ));
 
   const days = [
@@ -113,8 +113,7 @@ storiesOf("Button", module)
           id={interviewer.id}
           name={interviewer.name}
           avatar={interviewer.avatar}
-          setInterviewer={() => action("setInterviewer")(interviewer.id)}  //Now it expects a function with no parameters since the id is already included.
-          //An argument can be passed to a function in Storybook by wrapping it in () after the name of the action, as seen in the code above.
+          setInterviewer={() => action("setInterviewer")(interviewer.id)} 
         />
       ));
 
@@ -157,7 +156,7 @@ storiesOf("Button", module)
         })
         .add("Appointment", () => <Appointment />)
         .add("Appointment with Time", () => <Appointment time="12pm" />)
-        .add("Header", () => <Header time="12pm" />) // the rest of your code should go here);
+        .add("Header", () => <Header time="12pm" />) 
         .add("Empty", () => <Empty onAdd={action("onAdd")}/>)
         .add("Show", () => <Show student="Lydia Miller-Jones" interviewer={interviewer} onEdit={action("onEdit")} onDelete={action("onDelete")}/>)
         .add("Confirm", () => <Confirm message="Delete the appointment?" onConfirm ={action("onConfirm")} onCancel={action("onCancel")} />)
